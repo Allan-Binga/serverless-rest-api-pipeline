@@ -1,5 +1,4 @@
 service: coffee-shop-api
-frameworkVersion: '4'
 
 provider:
   name: aws
