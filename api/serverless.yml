@@ -28,7 +28,7 @@ functions:
           method: post
 
   getWorkouts:
-    handler: getWorkouts.handler
+    handler: getWorkout.handler
     environment:
       FITNESS_SESSIONS_TABLE: FitnessSessions-${self:provider.stage}
     events:
