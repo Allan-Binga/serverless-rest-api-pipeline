@@ -3,10 +3,8 @@ const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.handler = async () => {
   const params = {
-    TableName: process.env.COFFEE_ORDERS_TABLE
+    TableName: process.env.FITNESS_SESSIONS_TABLE
   };
-
-  //BLOCK
 
   try {
     const result = await dynamoDb.scan(params).promise();
@@ -17,7 +15,7 @@ module.exports.handler = async () => {
   } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: `Could not retrieve orders: ${error.message}` })
+      body: JSON.stringify({ error: `Could not retrieve workout sessions: ${error.message}` })
     };
   }
 };

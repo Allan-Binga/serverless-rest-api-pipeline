@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: Ubuntu-24.04
 
     steps:
     - name: Checkout code
@@ -46,6 +46,29 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         SERVERLESS_ACCESS_KEY: ${{secrets.SERVERLESS_ACCESS_KEY}}
+
+  docker_push:
+    runs-on: Ubuntu-24.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Build Docker image
+        run: |
+          docker build -t allanbinga/serverless-api:v1.0.0 .
+
+      - name: Log in to DockerHub
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Push Docker image to DockerHub
+        run: |
+          docker push allanbinga/serverless-api:v1.0.0    
 
 
         

@@ -1,4 +1,4 @@
-service: coffee-shop-api
+service: fitness-platform-api
 
 provider:
   name: aws
@@ -15,58 +15,59 @@ provider:
             - dynamodb:Scan
             - dynamodb:UpdateItem
             - dynamodb:DeleteItem
-          Resource: arn:aws:dynamodb:${self:provider.region}:*:table/CoffeeOrders-${self:provider.stage}
+          Resource: arn:aws:dynamodb:${self:provider.region}:*:table/FitnessSessions-${self:provider.stage}
 
 functions:
-  createCoffee:
-    handler: createCoffee.handler
+  createWorkout:
+    handler: createWorkout.handler
     environment:
-      COFFEE_ORDERS_TABLE: CoffeeOrders-${self:provider.stage}
+      FITNESS_SESSIONS_TABLE: FitnessSessions-${self:provider.stage}
     events:
       - http:
-          path: coffee
+          path: workouts
           method: post
-  
-  getCoffee:
-    handler: getCoffee.handler
+
+  getWorkouts:
+    handler: getWorkouts.handler
     environment:
-      COFFEE_ORDERS_TABLE: CoffeeOrders-${self:provider.stage}
+      FITNESS_SESSIONS_TABLE: FitnessSessions-${self:provider.stage}
     events:
       - http:
-          path: coffee
+          path: workouts
           method: get
-  
-  updateCoffee:
-    handler: updateCoffee.handler
+
+  updateWorkout:
+    handler: updateWorkout.handler
     environment:
-      COFFEE_ORDERS_TABLE: CoffeeOrders-${self:provider.stage}
-    events:
-      - http:  
-          path: coffee  
-          method: put  
-  
-  deleteCoffee:  
-    handler: deleteCoffee.handler
-    environment:
-      COFFEE_ORDERS_TABLE: CoffeeOrders-${self:provider.stage}
+      FITNESS_SESSIONS_TABLE: FitnessSessions-${self:provider.stage}
     events:
       - http:
-          path: coffee
+          path: workouts
+          method: put
+
+  deleteWorkout:
+    handler: deleteWorkout.handler
+    environment:
+      FITNESS_SESSIONS_TABLE: FitnessSessions-${self:provider.stage}
+    events:
+      - http:
+          path: workouts
           method: delete
+
 resources:
   Resources:
-    CoffeeTable:
+    FitnessTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: CoffeeOrders-${self:provider.stage}
+        TableName: FitnessSessions-${self:provider.stage}
         AttributeDefinitions:
-          - AttributeName: OrderId
+          - AttributeName: SessionId
             AttributeType: S
-          - AttributeName: CustomerName
+          - AttributeName: UserName
             AttributeType: S
         KeySchema:
-          - AttributeName: OrderId
+          - AttributeName: SessionId
             KeyType: HASH
-          - AttributeName: CustomerName
+          - AttributeName: UserName
             KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
