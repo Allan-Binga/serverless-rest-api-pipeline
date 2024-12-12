@@ -6,7 +6,7 @@ module.exports.handler = async (event) => {
   const requestBody = JSON.parse(event.body);
   const userName = requestBody.user_name;
   const workoutType = requestBody.workout_type;
-  const Id = uuidv4();
+  const sessionId = uuidv4();
 
   const params = {
     TableName: process.env.FITNESS_SESSIONS_TABLE,
