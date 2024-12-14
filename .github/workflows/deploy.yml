@@ -13,7 +13,13 @@ jobs:
     steps:
       - name: Install Dependencies
         run: |
+          cd .
+          npm install
+
+      - name: Run tests
+        run: |
           npm test
+
   deploy:
     runs-on: Ubuntu-24.04
 
