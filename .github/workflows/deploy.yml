@@ -92,8 +92,6 @@ jobs:
           channel-id: ${{ secrets.CHANNEL_ID }}
           slack-message: |
             :white_check_mark: Job Succeeded!
-            Branch: ${{ github.ref }}
-            Workflow: ${{ github.workflow }}
         env:
           SLACK_BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
 
@@ -104,7 +102,5 @@ jobs:
           channel-id: ${{ secrets.CHANNEL_ID }}
           slack-message: |
             :x: Deployment Workflow Failed!
-            Branch: ${{ github.ref }}
-            Workflow: ${{ github.workflow }}
         env:
           SLACK_BOT_TOKEN: ${{ secrets.BOT_TOKEN }}    
