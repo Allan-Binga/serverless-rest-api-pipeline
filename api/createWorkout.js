@@ -14,7 +14,7 @@ module.exports.handler = async (event) => {
       SessionId: sessionId,
       UserName: userName,
       WorkoutType: workoutType,
-      Status: 'Scheduled'
+      OrderStatus: 'Scheduled'
     }
   };
 
