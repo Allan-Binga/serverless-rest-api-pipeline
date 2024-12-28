@@ -17,6 +17,22 @@ provider:
             - dynamodb:DeleteItem
           Resource: arn:aws:dynamodb:${self:provider.region}:*:table/FitnessSessions-${self:provider.stage}
 
+  httpApi:
+    cors:
+      allowedOrigins:
+        - "http://localhost:3000"
+       # - "https://your-frontend-domain.com"
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+      allowedMethods:
+        - OPTIONS
+        - GET
+        - POST
+        - PUT
+        - DELETE
+      allowCredentials: true # Optional for cookies or tokens
+
 functions:
   createWorkout:
     handler: createWorkout.handler

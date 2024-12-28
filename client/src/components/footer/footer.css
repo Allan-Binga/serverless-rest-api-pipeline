@@ -1,0 +1,50 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the body is always at least the height of the viewport */
+}
+
+.footer {
+  background-color: rgb(219, 97, 16); /* Same as navbar for consistency */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px 30px;
+  box-sizing: border-box;
+  flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+.footer .footer-content {
+  max-width: 1200px;
+  width: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: end;
+}
+
+.footer .footer-socials {
+margin-bottom: 15px;
+justify-content: center;
+  display: flex;
+  gap: 20px;
+}
+
+.footer .footer-socials a {
+  margin: 0 10px;
+  color: #fff;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.footer .footer-socials a:hover {
+  color: #f0f0f0;
+  transform: scale(1.1);
+}
