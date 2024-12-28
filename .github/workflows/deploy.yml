@@ -25,6 +25,7 @@ jobs:
 
       - name: Run tests.
         run: |
+          cd backend
           npm test
 
   deploy:
@@ -41,6 +42,7 @@ jobs:
 
       - name: Install Serverless Framework.
         run: |
+          cd backend/api
           npm install -g serverless
 
       - name: Deploy to AWS (Dev).
@@ -71,14 +73,17 @@ jobs:
 
       - name: Build Docker image
         run: |
+          cd backend
           docker build -t allanbinga/serverless-api:v1.0.0 .
 
       - name: Log in to DockerHub.
         run: |
+          cd backend
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Push Docker image to DockerHub.
         run: |
+          cd backend
           docker push allanbinga/serverless-api:v1.0.0
   
   notify_slack:
