@@ -13,7 +13,7 @@ COPY package*json ./
 # Copy rest
 COPY . .
 
-WORKDIR /app/backend
+#WORKDIR /app/backend
 
 # Install serverless framework(globally)
 RUN npm install serverless
