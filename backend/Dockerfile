@@ -2,7 +2,7 @@
 FROM node:18
 
 #Setting working directory.
-WORKDIR /usr/src/app
+WORKDIR /app/backend    
 
 # Copy package.json
 COPY package*json ./
@@ -13,7 +13,7 @@ COPY package*json ./
 # Copy rest
 COPY . .
 
-WORKDIR /app
+WORKDIR /app/backend
 
 # Install serverless framework(globally)
 RUN npm install serverless
